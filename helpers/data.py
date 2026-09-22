@@ -6,6 +6,9 @@ DATA_DIR = Path("data/raw")
 def load_bitcoin_prices(interval='5m') -> pd.DataFrame:
     return pd.read_parquet(DATA_DIR / f"btc_usd_{interval}.parquet")
 
+def load_binance_1h_data() -> pd.DataFrame:
+    return pd.read_csv(DATA_DIR / "BINANCE_BTCUSDT, 60.csv")
+
 def resample_ohlcv(df, interval):
     return df.resample(interval).agg({
             "Open": "first",
